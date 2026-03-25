@@ -21,10 +21,10 @@ The goal is to move beyond simple classification and build a system that can **d
 
 **Computed Tomography Images for Intracranial Hemorrhage Detection and Segmentation (v1.3.1)**
 
-- 82 CT scans (~75 usable)
-- ~30 slices per patient
-- Slice thickness: 5 mm
-- Annotated by two radiologists
+Source: https://physionet.org/content/ct-ich/1.3.1/  
+Provider: PhysioNet
+
+This dataset contains annotated brain CT scans for intracranial hemorrhage (ICH) detection and segmentation, with pixel-wise labels provided by expert radiologists.
 
 ### Includes:
 
