@@ -1,0 +1,189 @@
+{
+  "title": "Brain CT Hemorrhage Analysis (Segmentation + Classification)",
+
+  "project_vision": {
+    "description": "This project aims to develop an AI-based system for intracranial hemorrhage (ICH) analysis from computed tomography (CT) scans.",
+    "architecture": "Modular pipeline combining computer vision and future language models",
+    "long_term_goal": "Deployable decision-support prototype",
+    "components": [
+      "Deep learning for hemorrhage detection and segmentation",
+      "Structured feature extraction",
+      "Retrieval-Augmented Generation (RAG)",
+      "Large Language Models (LLMs) for explanation"
+    ]
+  },
+
+  "current_focus": {
+    "version": "v1",
+    "goal": "Build a clean, reliable preprocessing pipeline and prepare a high-quality dataset",
+    "tasks": [
+      "Convert 3D CT volumes into 2D slices",
+      "Preserve Hounsfield Units (HU)",
+      "Create classification-ready dataset"
+    ]
+  },
+
+  "system_architecture": [
+    "3D CT Scan (NIfTI)",
+    "2D Slice Extraction",
+    "Preprocessing Pipeline",
+    "Structured Dataset (Train / Val / Test)",
+    "Deep Learning Models (Next Step)"
+  ],
+
+  "dataset": {
+    "name": "Computed Tomography Images for Intracranial Hemorrhage Detection and Segmentation (v1.3.1)",
+    "url": "https://physionet.org/content/ct-ich/1.3.1/",
+    "details": [
+      "CT scans of traumatic brain injury patients",
+      "Expert-annotated hemorrhage masks",
+      "3D NIfTI format (.nii)"
+    ],
+    "note": "Follow PhysioNet licensing and usage requirements"
+  },
+
+  "implemented": {
+    "conversion": {
+      "description": "Converted CT volumes into slice-wise 2D data",
+      "alignment": [
+        "CT slices",
+        "Corresponding mask slices"
+      ]
+    },
+
+    "data_format": {
+      "removed": "PNG",
+      "reason": "Loss of medical precision",
+      "used": ".npy",
+      "benefits": [
+        "Preserves Hounsfield Units (HU)",
+        "Supports correct windowing and filtering"
+      ]
+    },
+
+    "labeling": {
+      "method": "Segmentation to binary classification",
+      "logic": "label = 1 if any(mask == 255) else 0",
+      "output": "labels.csv"
+    },
+
+    "preprocessing": {
+      "steps": [
+        "Filtering (HU-based, partially implemented)",
+        "Windowing (WL=40, WW=80)",
+        "Normalization"
+      ],
+      "important_note": "Filtering must be applied before windowing"
+    },
+
+    "dataset_split": {
+      "method": "3D volume-level split",
+      "reason": "Prevent data leakage",
+      "distribution": {
+        "train": 2281,
+        "val": 241,
+        "test": 292
+      }
+    },
+
+    "data_structure": {
+      "root": "processed_data",
+      "structure": {
+        "train": ["images", "labels.csv"],
+        "val": ["images", "labels.csv"],
+        "test": ["images", "labels.csv"]
+      }
+    },
+
+    "validation": [
+      "Mask values verified as [0, 255]",
+      "CT-mask alignment checked",
+      "File/path issues resolved",
+      "Pipeline rebuilt cleanly"
+    ]
+  },
+
+  "input_output": {
+    "input": "2D CT slices (.npy)",
+    "output": [
+      "Classification labels (0 / 1)",
+      "Segmentation masks (binary)"
+    ]
+  },
+
+  "evaluation_metrics": {
+    "classification": [
+      "Accuracy",
+      "Precision",
+      "Recall",
+      "F1-score"
+    ],
+    "segmentation": [
+      "Dice Coefficient",
+      "Intersection over Union (IoU)"
+    ]
+  },
+
+  "current_status": {
+    "completed": [
+      "Dataset acquisition",
+      "3D → 2D conversion",
+      "Label generation",
+      "Preprocessing pipeline design",
+      "Dataset splitting",
+      "Data validation"
+    ],
+    "next_steps": [
+      "Train classification model",
+      "Train segmentation model",
+      "Evaluate models",
+      "Move to 3D modeling",
+      "Structured feature extraction",
+      "LLM + RAG integration",
+      "Deployment (API + UI)"
+    ]
+  },
+
+  "future_work": {
+    "computer_vision": [
+      "3D CNN models",
+      "U-Net / nnU-Net"
+    ],
+    "multimodal_ai": [
+      "Structured medical features",
+      "RAG integration",
+      "LLM explanations"
+    ],
+    "deployment": [
+      "FastAPI / Flask",
+      "Streamlit UI",
+      "Docker"
+    ]
+  },
+
+  "disclaimer": "This project is a research and engineering prototype and not intended for clinical use",
+
+  "team_structure": {
+    "modules": [
+      {
+        "name": "Computer Vision Module",
+        "description": "Detection and segmentation pipeline"
+      },
+      {
+        "name": "LLM + RAG Module",
+        "description": "Explanation and knowledge integration"
+      }
+    ]
+  },
+
+  "key_focus": [
+    "HU-aware preprocessing",
+    "Structured AI pipelines",
+    "Data-centric development",
+    "2D to 3D transition"
+  ],
+
+  "contact": {
+    "note": "If you find this project useful, consider giving it a star"
+  }
+}
