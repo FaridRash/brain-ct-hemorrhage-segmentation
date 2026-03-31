@@ -168,4 +168,7 @@ This project is a research and engineering prototype and not intended for clinic
 
 ## 📬 Contact
 
+Seyed Ali Rashidi (Farid)
+farid.rash@gmail.com
+
 If you find this project useful, consider giving it a star
