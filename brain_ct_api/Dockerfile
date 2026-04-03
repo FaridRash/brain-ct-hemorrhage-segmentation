@@ -9,6 +9,10 @@ RUN apt-get update && apt-get install -y \
 
 # install python deps
 COPY requirements.txt .
+# install numpy first (force correct version)
+RUN pip install --no-cache-dir "numpy<2"
+
+# then install everything else
 RUN pip install --no-cache-dir -r requirements.txt
 
 # copy app
