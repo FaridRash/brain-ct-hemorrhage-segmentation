@@ -2,31 +2,21 @@
 
 ## 🚀 Project Vision
 
-This project aims to develop an AI-based system for intracranial hemorrhage (ICH) analysis from computed tomography (CT) scans.
+This project develops a **modular AI system** for intracranial hemorrhage (ICH) analysis from CT scans.
 
-**Architecture:**
-- Modular pipeline combining computer vision and future language models
+The system combines:
+- **Computer Vision (CV)** → detection & segmentation  
+- **Machine Learning (ML)** → decision making  
+- **LLM + RAG (future)** → clinical-style explanations  
 
-**Long-term Goal:**
-- Deployable decision-support prototype
+🎯 **Goal:**  
+Build a **deployable decision-support prototype** for fast and reliable hemorrhage detection.
 
-**Components:**
-- Deep learning for hemorrhage detection and segmentation
-- Structured feature extraction
-- Retrieval-Augmented Generation (RAG)
-- Large Language Models (LLMs) for explanation
+---
 
-## 📌 Current Focus
+## 🧩 System Overview
 
-**Version:** v1
-
-Build a clean, reliable preprocessing pipeline and prepare a high-quality dataset
-
-- Convert 3D CT volumes into 2D slices
-- Preserve Hounsfield Units (HU)
-- Create classification-ready dataset
-
-## 🧩 System Architecture
+The pipeline follows a **data-centric and modular architecture**:
 
 3D CT Scan (NIfTI)
 ↓
@@ -36,139 +26,221 @@ Preprocessing Pipeline
 ↓
 Structured Dataset (Train / Val / Test)
 ↓
-Deep Learning Models (Next Step)
+Deep Learning Models (Segmentation + Classification)
 ↓
+(Next) LLM + RAG + UI
+
+
+---
+
+## 🧠 Computer Vision Workflow
+
+![CV Workflow](https://github.com/FaridRash/brain-ct-hemorrhage-segmentation/blob/main/Diagrams/CV%20Workflow.jpg)
+
+This workflow describes the **inference-time pipeline** after model training:
+- Input CT slice
+- Preprocessing (cropping, filtering, windowing)
+- Segmentation (U-Net)
+- Classification decision (hemorrhage / no hemorrhage)
+
+---
+
+## ⚙️ Training Workflow
+
+![Training Workflow](https://github.com/FaridRash/brain-ct-hemorrhage-segmentation/blob/main/Diagrams/The%20Training%20Workflow.jpg)
+
+This workflow describes how the model is trained:
+- Dataset input
+- Forward pass through segmentation model
+- Loss computation
+- Backpropagation
+- Weight update via optimizer
+
+---
 
 ## 📊 Dataset
 
-**Computed Tomography Images for Intracranial Hemorrhage Detection and Segmentation (v1.3.1)**
-
+**Source:**  
+PhysioNet – *CT Images for Intracranial Hemorrhage Detection and Segmentation (v1.3.1)*  
 https://physionet.org/content/ct-ich/1.3.1/
 
-- CT scans of traumatic brain injury patients
+### Characteristics
+- Traumatic brain injury CT scans
 - Expert-annotated hemorrhage masks
 - 3D NIfTI format (.nii)
 
-⚠️ Follow PhysioNet licensing and usage requirements
+⚠️ Must comply with PhysioNet usage and licensing
 
-## ⚙️ Implemented Pipeline
+---
 
-### Conversion
-- Converted CT volumes into slice-wise 2D data
-- CT slices
-- Corresponding mask slices
+## ⚙️ Data Pipeline (v1)
 
-### Data Format
-- Removed: PNG
-- Used: .npy
-- Reason: Loss of medical precision
-- Preserves Hounsfield Units (HU)
-- Supports correct windowing and filtering
+### 1. 3D → 2D Conversion
+- Extract slice-wise CT images and masks
+- Maintain spatial correspondence
 
-### Labeling
-- Method: Segmentation to binary classification
-- Logic: `label = 1 if any(mask == 255) else 0`
-- Output: labels.csv
+---
 
-### Preprocessing
-- Filtering (HU-based, partially implemented)
-- Windowing (WL=40, WW=80)
-- Normalization
+### 2. Data Format
+- Format: `.npy`
+- PNG removed
 
-⚠️ Filtering must be applied before windowing
+**Reason:**
+- Preserve full **Hounsfield Unit (HU)** range  
+- Enable accurate radiological processing
 
-### Dataset Split
-- Method: 3D volume-level split
-- Reason: Prevent data leakage
-- Train: 2281
-- Val: 241
-- Test: 292
+---
 
-### Data Structure
+### 3. Label Generation
+Binary classification derived from segmentation:
+
+label = 1 if any(mask > 0) else 0
+
+Output:
+- `labels.csv`
+
+---
+
+### 4. Preprocessing Pipeline
+
+✔ Correct order (critical):
+
+1. **Filtering (HU-based)**
+2. **Cropping (brain region)**
+3. **Windowing (WL=40, WW=80)**
+4. **Normalization**
+
+🔴 Important:
+- Filtering must be applied **before windowing**
+- HU information must be preserved until windowing stage
+
+---
+
+### 5. Dataset Split
+
+- Strategy: **3D volume-level split**
+- Prevents **data leakage across slices**
+
+| Split | Samples |
+|------|--------|
+| Train | 2281 |
+| Val   | 241  |
+| Test  | 292  |
+
+---
+
+### 6. Data Structure
+
 processed_data/
-  train/
-    - images
-    - labels.csv
-  val/
-    - images
-    - labels.csv
-  test/
-    - images
-    - labels.csv
+train/
+images/
+labels.csv
+val/
+images/
+labels.csv
+test/
+images/
+labels.csv
 
-### Validation
-- Mask values verified as [0, 255]
-- CT-mask alignment checked
-- File/path issues resolved
+
+---
+
+### 7. Validation Checks
+
+- Mask values verified: `[0, 255]`
+- Image-mask alignment confirmed
+- File consistency validated
 - Pipeline rebuilt cleanly
+
+---
 
 ## 📥 Input / Output
 
-**Input:** 2D CT slices (.npy)
+**Input:**
+- 2D CT slices (`.npy`)
 
 **Output:**
-- Classification labels (0 / 1)
-- Segmentation masks (binary)
+- Classification label (0 / 1)
+- Segmentation mask (binary)
+
+---
 
 ## 📈 Evaluation Metrics
 
 ### Classification
-- Accuracy
-- Precision
-- Recall
-- F1-score
+- Accuracy  
+- Precision  
+- Recall  
+- F1-score  
 
 ### Segmentation
-- Dice Coefficient
-- Intersection over Union (IoU)
+- Dice Coefficient  
+- Intersection over Union (IoU)  
+
+---
 
 ## 📌 Current Status
 
-### Completed
-- Dataset acquisition
-- 3D → 2D conversion
-- Label generation
-- Preprocessing pipeline design
-- Dataset splitting
-- Data validation
+### ✅ Completed
+- Dataset acquisition  
+- 3D → 2D conversion  
+- Label generation  
+- Preprocessing pipeline  
+- Dataset splitting  
+- Data validation  
 
-### Next Steps
+---
+
+### 🔜 Next Steps
+
+- Train segmentation model (U-Net)
 - Train classification model
-- Train segmentation model
-- Evaluate models
-- Move to 3D modeling
-- Structured feature extraction
+- Model evaluation
+- 3D modeling extension
+- Feature extraction
 - LLM + RAG integration
 - Deployment (API + UI)
 
-## 🔮 Future Work
+---
 
-### computer_vision
-### multimodal_ai
-### deployment
+## 🔮 Future Directions
+
+### Computer Vision
+- 3-channel windowing (multi-window inputs)
+- Brain region detection (auto-cropping)
+- 3D volumetric models
+
+### Multimodal AI
+- CV + LLM integration
+- Clinical reasoning layer
+
+### Deployment
 - FastAPI / Flask
-- Streamlit UI
-- Docker
+- Dockerized inference
+- Streamlit interface
 
-## 🤝 Team Structure
+---
 
-- **Computer Vision Module**: Detection and segmentation pipeline
-- **LLM + RAG Module**: Explanation and knowledge integration
+## 🤝 System Modules
 
-## 🧠 Key Focus
+- **CV Module** → segmentation + detection  
+- **ML Module** → classification  
+- **LLM + RAG Module** → explanation layer  
+- **UI Module** → user interaction  
 
-- HU-aware preprocessing
-- Structured AI pipelines
-- Data-centric development
-- 2D to 3D transition
+---
 
 ## ⚠️ Disclaimer
 
-This project is a research and engineering prototype and not intended for clinical use
+This project is a **research prototype** and is **not intended for clinical use**.
+
+---
 
 ## 📬 Contact
 
-Seyed Ali Rashidi (Farid)
-farid.rash@gmail.com
+**Seyed Ali Rashidi (Farid)**  
+📧 farid.rash@gmail.com  
 
-If you find this project useful, consider giving it a star
+---
+
+⭐ If you find this project useful, consider starring the repository
