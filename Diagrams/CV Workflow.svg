@@ -1,0 +1,216 @@
+<svg width="2423pt" height="112pt" viewBox="0.00 0.00 2423.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-108 2418.86,-108 2418.86,4 -4,4"/>
+<!-- DATA -->
+<g id="node1" class="node">
+<title>DATA</title>
+<path fill="none" stroke="black" d="M140.61,-62C140.61,-62 12,-62 12,-62 6,-62 0,-56 0,-50 0,-50 0,-38 0,-38 0,-32 6,-26 12,-26 12,-26 140.61,-26 140.61,-26 146.61,-26 152.61,-32 152.61,-38 152.61,-38 152.61,-50 152.61,-50 152.61,-56 146.61,-62 140.61,-62"/>
+<text xml:space="preserve" text-anchor="middle" x="76.3" y="-39.8" font-family="Times,serif" font-size="14.00">CT Scans (.nii) + Masks</text>
+</g>
+<!-- SPLIT -->
+<g id="node2" class="node">
+<title>SPLIT</title>
+<path fill="none" stroke="black" d="M298.35,-64.8C298.35,-64.8 200.61,-64.8 200.61,-64.8 194.61,-64.8 188.61,-58.8 188.61,-52.8 188.61,-52.8 188.61,-35.2 188.61,-35.2 188.61,-29.2 194.61,-23.2 200.61,-23.2 200.61,-23.2 298.35,-23.2 298.35,-23.2 304.35,-23.2 310.35,-29.2 310.35,-35.2 310.35,-35.2 310.35,-52.8 310.35,-52.8 310.35,-58.8 304.35,-64.8 298.35,-64.8"/>
+<text xml:space="preserve" text-anchor="middle" x="249.48" y="-48.2" font-family="Times,serif" font-size="14.00">Split by Scan</text>
+<text xml:space="preserve" text-anchor="middle" x="249.48" y="-31.4" font-family="Times,serif" font-size="14.00">(Train / Val / Test)</text>
+</g>
+<!-- DATA&#45;&gt;SPLIT -->
+<g id="edge1" class="edge">
+<title>DATA-&gt;SPLIT</title>
+<path fill="none" stroke="black" d="M152.88,-44C160.83,-44 168.88,-44 176.78,-44"/>
+<polygon fill="black" stroke="black" points="176.69,-47.5 186.69,-44 176.69,-40.5 176.69,-47.5"/>
+</g>
+<!-- CONV -->
+<g id="node3" class="node">
+<title>CONV</title>
+<path fill="none" stroke="black" d="M524.94,-62C524.94,-62 358.35,-62 358.35,-62 352.35,-62 346.35,-56 346.35,-50 346.35,-50 346.35,-38 346.35,-38 346.35,-32 352.35,-26 358.35,-26 358.35,-26 524.94,-26 524.94,-26 530.94,-26 536.94,-32 536.94,-38 536.94,-38 536.94,-50 536.94,-50 536.94,-56 530.94,-62 524.94,-62"/>
+<text xml:space="preserve" text-anchor="middle" x="441.64" y="-39.8" font-family="Times,serif" font-size="14.00">Convert 3D → 2D Slices (.npy)</text>
+</g>
+<!-- SPLIT&#45;&gt;CONV -->
+<g id="edge2" class="edge">
+<title>SPLIT-&gt;CONV</title>
+<path fill="none" stroke="black" d="M310.65,-44C318.43,-44 326.57,-44 334.82,-44"/>
+<polygon fill="black" stroke="black" points="334.6,-47.5 344.6,-44 334.6,-40.5 334.6,-47.5"/>
+</g>
+<!-- DETECT -->
+<g id="node4" class="node">
+<title>DETECT</title>
+<path fill="none" stroke="black" d="M684.25,-64.8C684.25,-64.8 584.94,-64.8 584.94,-64.8 578.94,-64.8 572.94,-58.8 572.94,-52.8 572.94,-52.8 572.94,-35.2 572.94,-35.2 572.94,-29.2 578.94,-23.2 584.94,-23.2 584.94,-23.2 684.25,-23.2 684.25,-23.2 690.25,-23.2 696.25,-29.2 696.25,-35.2 696.25,-35.2 696.25,-52.8 696.25,-52.8 696.25,-58.8 690.25,-64.8 684.25,-64.8"/>
+<text xml:space="preserve" text-anchor="middle" x="634.59" y="-48.2" font-family="Times,serif" font-size="14.00">Brain Detection</text>
+<text xml:space="preserve" text-anchor="middle" x="634.59" y="-31.4" font-family="Times,serif" font-size="14.00">(Threshold on HU)</text>
+</g>
+<!-- CONV&#45;&gt;DETECT -->
+<g id="edge3" class="edge">
+<title>CONV-&gt;DETECT</title>
+<path fill="none" stroke="black" d="M537.28,-44C545.34,-44 553.42,-44 561.27,-44"/>
+<polygon fill="black" stroke="black" points="561.07,-47.5 571.07,-44 561.07,-40.5 561.07,-47.5"/>
+</g>
+<!-- BBOX -->
+<g id="node5" class="node">
+<title>BBOX</title>
+<path fill="none" stroke="black" d="M880.12,-62C880.12,-62 744.25,-62 744.25,-62 738.25,-62 732.25,-56 732.25,-50 732.25,-50 732.25,-38 732.25,-38 732.25,-32 738.25,-26 744.25,-26 744.25,-26 880.12,-26 880.12,-26 886.12,-26 892.12,-32 892.12,-38 892.12,-38 892.12,-50 892.12,-50 892.12,-56 886.12,-62 880.12,-62"/>
+<text xml:space="preserve" text-anchor="middle" x="812.19" y="-39.8" font-family="Times,serif" font-size="14.00">Bounding Box Extraction</text>
+</g>
+<!-- DETECT&#45;&gt;BBOX -->
+<g id="edge4" class="edge">
+<title>DETECT-&gt;BBOX</title>
+<path fill="none" stroke="black" d="M696.51,-44C704.26,-44 712.31,-44 720.39,-44"/>
+<polygon fill="black" stroke="black" points="720.3,-47.5 730.3,-44 720.3,-40.5 720.3,-47.5"/>
+</g>
+<!-- CROP -->
+<g id="node6" class="node">
+<title>CROP</title>
+<path fill="none" stroke="black" d="M1047.6,-62C1047.6,-62 940.12,-62 940.12,-62 934.12,-62 928.12,-56 928.12,-50 928.12,-50 928.12,-38 928.12,-38 928.12,-32 934.12,-26 940.12,-26 940.12,-26 1047.6,-26 1047.6,-26 1053.6,-26 1059.6,-32 1059.6,-38 1059.6,-38 1059.6,-50 1059.6,-50 1059.6,-56 1053.6,-62 1047.6,-62"/>
+<text xml:space="preserve" text-anchor="middle" x="993.86" y="-39.8" font-family="Times,serif" font-size="14.00">Crop Image &amp; Mask</text>
+</g>
+<!-- BBOX&#45;&gt;CROP -->
+<g id="edge5" class="edge">
+<title>BBOX-&gt;CROP</title>
+<path fill="none" stroke="black" d="M892.52,-44C900.41,-44 908.42,-44 916.29,-44"/>
+<polygon fill="black" stroke="black" points="916.17,-47.5 926.17,-44 916.17,-40.5 916.17,-47.5"/>
+</g>
+<!-- WINDOW -->
+<g id="node7" class="node">
+<title>WINDOW</title>
+<path fill="none" stroke="black" d="M1225.59,-93.8C1225.59,-93.8 1107.6,-93.8 1107.6,-93.8 1101.6,-93.8 1095.6,-87.8 1095.6,-81.8 1095.6,-81.8 1095.6,-64.2 1095.6,-64.2 1095.6,-58.2 1101.6,-52.2 1107.6,-52.2 1107.6,-52.2 1225.59,-52.2 1225.59,-52.2 1231.59,-52.2 1237.59,-58.2 1237.59,-64.2 1237.59,-64.2 1237.59,-81.8 1237.59,-81.8 1237.59,-87.8 1231.59,-93.8 1225.59,-93.8"/>
+<text xml:space="preserve" text-anchor="middle" x="1166.6" y="-77.2" font-family="Times,serif" font-size="14.00">Multi-Windowing</text>
+<text xml:space="preserve" text-anchor="middle" x="1166.6" y="-60.4" font-family="Times,serif" font-size="14.00">(Brain / Blood / Bone)</text>
+</g>
+<!-- CROP&#45;&gt;WINDOW -->
+<g id="edge6" class="edge">
+<title>CROP-&gt;WINDOW</title>
+<path fill="none" stroke="black" d="M1059.9,-55.05C1067.87,-56.4 1076.09,-57.8 1084.26,-59.18"/>
+<polygon fill="black" stroke="black" points="1083.4,-62.59 1093.85,-60.81 1084.57,-55.69 1083.4,-62.59"/>
+</g>
+<!-- GT -->
+<g id="node10" class="node">
+<title>GT</title>
+<path fill="none" stroke="black" d="M1522.44,-36C1522.44,-36 1418.45,-36 1418.45,-36 1412.45,-36 1406.45,-30 1406.45,-24 1406.45,-24 1406.45,-12 1406.45,-12 1406.45,-6 1412.45,0 1418.45,0 1418.45,0 1522.44,0 1522.44,0 1528.44,0 1534.44,-6 1534.44,-12 1534.44,-12 1534.44,-24 1534.44,-24 1534.44,-30 1528.44,-36 1522.44,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="1470.45" y="-13.8" font-family="Times,serif" font-size="14.00">Ground Truth Mask</text>
+</g>
+<!-- CROP&#45;&gt;GT -->
+<g id="edge9" class="edge">
+<title>CROP-&gt;GT</title>
+<path fill="none" stroke="black" d="M1059.86,-40.44C1147.25,-35.65 1302.31,-27.16 1394.52,-22.1"/>
+<polygon fill="black" stroke="black" points="1394.69,-25.6 1404.48,-21.56 1394.31,-18.61 1394.69,-25.6"/>
+</g>
+<!-- NORM -->
+<g id="node8" class="node">
+<title>NORM</title>
+<path fill="none" stroke="black" d="M1358.45,-92C1358.45,-92 1285.59,-92 1285.59,-92 1279.59,-92 1273.59,-86 1273.59,-80 1273.59,-80 1273.59,-68 1273.59,-68 1273.59,-62 1279.59,-56 1285.59,-56 1285.59,-56 1358.45,-56 1358.45,-56 1364.45,-56 1370.45,-62 1370.45,-68 1370.45,-68 1370.45,-80 1370.45,-80 1370.45,-86 1364.45,-92 1358.45,-92"/>
+<text xml:space="preserve" text-anchor="middle" x="1322.02" y="-69.8" font-family="Times,serif" font-size="14.00">Normalization</text>
+</g>
+<!-- WINDOW&#45;&gt;NORM -->
+<g id="edge7" class="edge">
+<title>WINDOW-&gt;NORM</title>
+<path fill="none" stroke="black" d="M1238.02,-73.46C1246.07,-73.51 1254.2,-73.56 1262.08,-73.62"/>
+<polygon fill="black" stroke="black" points="1261.85,-77.11 1271.87,-73.68 1261.89,-70.11 1261.85,-77.11"/>
+</g>
+<!-- INPUT -->
+<g id="node9" class="node">
+<title>INPUT</title>
+<path fill="none" stroke="black" d="M1507.07,-95.8C1507.07,-95.8 1433.82,-95.8 1433.82,-95.8 1427.82,-95.8 1421.82,-89.8 1421.82,-83.8 1421.82,-83.8 1421.82,-66.2 1421.82,-66.2 1421.82,-60.2 1427.82,-54.2 1433.82,-54.2 1433.82,-54.2 1507.07,-54.2 1507.07,-54.2 1513.07,-54.2 1519.07,-60.2 1519.07,-66.2 1519.07,-66.2 1519.07,-83.8 1519.07,-83.8 1519.07,-89.8 1513.07,-95.8 1507.07,-95.8"/>
+<text xml:space="preserve" text-anchor="middle" x="1470.45" y="-79.2" font-family="Times,serif" font-size="14.00">Prepared Slice</text>
+<text xml:space="preserve" text-anchor="middle" x="1470.45" y="-62.4" font-family="Times,serif" font-size="14.00">(3 Channels)</text>
+</g>
+<!-- NORM&#45;&gt;INPUT -->
+<g id="edge8" class="edge">
+<title>NORM-&gt;INPUT</title>
+<path fill="none" stroke="black" d="M1370.56,-74.32C1383.16,-74.41 1396.91,-74.5 1410.05,-74.59"/>
+<polygon fill="black" stroke="black" points="1409.85,-78.09 1419.88,-74.66 1409.9,-71.09 1409.85,-78.09"/>
+</g>
+<!-- SAMPLER -->
+<g id="node11" class="node">
+<title>SAMPLER</title>
+<path fill="none" stroke="black" d="M1719.85,-91.8C1719.85,-91.8 1582.44,-91.8 1582.44,-91.8 1576.44,-91.8 1570.44,-85.8 1570.44,-79.8 1570.44,-79.8 1570.44,-62.2 1570.44,-62.2 1570.44,-56.2 1576.44,-50.2 1582.44,-50.2 1582.44,-50.2 1719.85,-50.2 1719.85,-50.2 1725.85,-50.2 1731.85,-56.2 1731.85,-62.2 1731.85,-62.2 1731.85,-79.8 1731.85,-79.8 1731.85,-85.8 1725.85,-91.8 1719.85,-91.8"/>
+<text xml:space="preserve" text-anchor="middle" x="1651.14" y="-75.2" font-family="Times,serif" font-size="14.00">Balanced Batch Sampling</text>
+<text xml:space="preserve" text-anchor="middle" x="1651.14" y="-58.4" font-family="Times,serif" font-size="14.00">(50% Pos / 50% Neg)</text>
+</g>
+<!-- INPUT&#45;&gt;SAMPLER -->
+<g id="edge10" class="edge">
+<title>INPUT-&gt;SAMPLER</title>
+<path fill="none" stroke="black" d="M1519.33,-73.93C1531.53,-73.66 1545.05,-73.35 1558.64,-73.05"/>
+<polygon fill="black" stroke="black" points="1558.6,-76.55 1568.52,-72.83 1558.45,-69.55 1558.6,-76.55"/>
+</g>
+<!-- GT&#45;&gt;SAMPLER -->
+<g id="edge11" class="edge">
+<title>GT-&gt;SAMPLER</title>
+<path fill="none" stroke="black" d="M1533.69,-36.46C1544.69,-39.72 1556.28,-43.16 1567.73,-46.56"/>
+<polygon fill="black" stroke="black" points="1566.59,-49.87 1577.17,-49.36 1568.58,-43.16 1566.59,-49.87"/>
+</g>
+<!-- LOSS -->
+<g id="node14" class="node">
+<title>LOSS</title>
+<path fill="none" stroke="black" d="M2118.09,-81.8C2118.09,-81.8 2046.36,-81.8 2046.36,-81.8 2040.36,-81.8 2034.36,-75.8 2034.36,-69.8 2034.36,-69.8 2034.36,-52.2 2034.36,-52.2 2034.36,-46.2 2040.36,-40.2 2046.36,-40.2 2046.36,-40.2 2118.09,-40.2 2118.09,-40.2 2124.09,-40.2 2130.09,-46.2 2130.09,-52.2 2130.09,-52.2 2130.09,-69.8 2130.09,-69.8 2130.09,-75.8 2124.09,-81.8 2118.09,-81.8"/>
+<text xml:space="preserve" text-anchor="middle" x="2082.23" y="-65.2" font-family="Times,serif" font-size="14.00">Loss Function</text>
+<text xml:space="preserve" text-anchor="middle" x="2082.23" y="-48.4" font-family="Times,serif" font-size="14.00">(Dice + BCE)</text>
+</g>
+<!-- GT&#45;&gt;LOSS -->
+<g id="edge15" class="edge">
+<title>GT-&gt;LOSS</title>
+<path fill="none" stroke="black" d="M1534.79,-15.3C1634.23,-12.17 1832.73,-10.44 1998.36,-37 2006.4,-38.29 2014.75,-40.11 2022.93,-42.18"/>
+<polygon fill="black" stroke="black" points="2021.89,-45.53 2032.46,-44.74 2023.71,-38.77 2021.89,-45.53"/>
+</g>
+<!-- MODEL -->
+<g id="node12" class="node">
+<title>MODEL</title>
+<path fill="none" stroke="black" d="M1846.88,-89C1846.88,-89 1779.85,-89 1779.85,-89 1773.85,-89 1767.85,-83 1767.85,-77 1767.85,-77 1767.85,-65 1767.85,-65 1767.85,-59 1773.85,-53 1779.85,-53 1779.85,-53 1846.88,-53 1846.88,-53 1852.88,-53 1858.88,-59 1858.88,-65 1858.88,-65 1858.88,-77 1858.88,-77 1858.88,-83 1852.88,-89 1846.88,-89"/>
+<text xml:space="preserve" text-anchor="middle" x="1813.36" y="-66.8" font-family="Times,serif" font-size="14.00">U-Net Model</text>
+</g>
+<!-- SAMPLER&#45;&gt;MODEL -->
+<g id="edge12" class="edge">
+<title>SAMPLER-&gt;MODEL</title>
+<path fill="none" stroke="black" d="M1732.25,-71C1740.36,-71 1748.46,-71 1756.24,-71"/>
+<polygon fill="black" stroke="black" points="1756.22,-74.5 1766.22,-71 1756.22,-67.5 1756.22,-74.5"/>
+</g>
+<!-- PRED -->
+<g id="node13" class="node">
+<title>PRED</title>
+<path fill="none" stroke="black" d="M1986.36,-82C1986.36,-82 1906.88,-82 1906.88,-82 1900.88,-82 1894.88,-76 1894.88,-70 1894.88,-70 1894.88,-58 1894.88,-58 1894.88,-52 1900.88,-46 1906.88,-46 1906.88,-46 1986.36,-46 1986.36,-46 1992.36,-46 1998.36,-52 1998.36,-58 1998.36,-58 1998.36,-70 1998.36,-70 1998.36,-76 1992.36,-82 1986.36,-82"/>
+<text xml:space="preserve" text-anchor="middle" x="1946.62" y="-59.8" font-family="Times,serif" font-size="14.00">Predicted Mask</text>
+</g>
+<!-- MODEL&#45;&gt;PRED -->
+<g id="edge13" class="edge">
+<title>MODEL-&gt;PRED</title>
+<path fill="none" stroke="black" d="M1859.17,-68.61C1866.94,-68.2 1875.15,-67.76 1883.29,-67.32"/>
+<polygon fill="black" stroke="black" points="1883.39,-70.82 1893.19,-66.8 1883.02,-63.83 1883.39,-70.82"/>
+</g>
+<!-- PRED&#45;&gt;LOSS -->
+<g id="edge14" class="edge">
+<title>PRED-&gt;LOSS</title>
+<path fill="none" stroke="black" d="M1998.51,-62.86C2006.43,-62.68 2014.67,-62.49 2022.74,-62.31"/>
+<polygon fill="black" stroke="black" points="2022.56,-65.82 2032.48,-62.09 2022.4,-58.82 2022.56,-65.82"/>
+</g>
+<!-- BACK -->
+<g id="node15" class="node">
+<title>BACK</title>
+<path fill="none" stroke="black" d="M2265.73,-81C2265.73,-81 2178.09,-81 2178.09,-81 2172.09,-81 2166.09,-75 2166.09,-69 2166.09,-69 2166.09,-57 2166.09,-57 2166.09,-51 2172.09,-45 2178.09,-45 2178.09,-45 2265.73,-45 2265.73,-45 2271.73,-45 2277.73,-51 2277.73,-57 2277.73,-57 2277.73,-69 2277.73,-69 2277.73,-75 2271.73,-81 2265.73,-81"/>
+<text xml:space="preserve" text-anchor="middle" x="2221.91" y="-58.8" font-family="Times,serif" font-size="14.00">Backpropagation</text>
+</g>
+<!-- LOSS&#45;&gt;BACK -->
+<g id="edge16" class="edge">
+<title>LOSS-&gt;BACK</title>
+<path fill="none" stroke="black" d="M2130.22,-61.68C2138.15,-61.8 2146.51,-61.92 2154.81,-62.04"/>
+<polygon fill="black" stroke="black" points="2154.49,-65.54 2164.54,-62.18 2154.6,-58.54 2154.49,-65.54"/>
+</g>
+<!-- UPDATE -->
+<g id="node16" class="node">
+<title>UPDATE</title>
+<path fill="none" stroke="black" d="M2402.86,-104C2402.86,-104 2325.73,-104 2325.73,-104 2319.73,-104 2313.73,-98 2313.73,-92 2313.73,-92 2313.73,-80 2313.73,-80 2313.73,-74 2319.73,-68 2325.73,-68 2325.73,-68 2402.86,-68 2402.86,-68 2408.86,-68 2414.86,-74 2414.86,-80 2414.86,-80 2414.86,-92 2414.86,-92 2414.86,-98 2408.86,-104 2402.86,-104"/>
+<text xml:space="preserve" text-anchor="middle" x="2364.29" y="-81.8" font-family="Times,serif" font-size="14.00">Weight Update</text>
+</g>
+<!-- BACK&#45;&gt;UPDATE -->
+<g id="edge17" class="edge">
+<title>BACK-&gt;UPDATE</title>
+<path fill="none" stroke="black" d="M2277.99,-72.02C2285.93,-73.32 2294.13,-74.67 2302.18,-75.99"/>
+<polygon fill="black" stroke="black" points="2301.47,-79.42 2311.9,-77.58 2302.6,-72.51 2301.47,-79.42"/>
+</g>
+<!-- UPDATE&#45;&gt;MODEL -->
+<g id="edge18" class="edge">
+<title>UPDATE-&gt;MODEL</title>
+<path fill="none" stroke="black" d="M2313.48,-90.83C2227.64,-98.2 2046.44,-109.54 1894.88,-91 1886.82,-90.01 1878.41,-88.49 1870.19,-86.72"/>
+<polygon fill="black" stroke="black" points="1871.15,-83.35 1860.62,-84.51 1869.58,-90.17 1871.15,-83.35"/>
+</g>
+</g>
+</svg>

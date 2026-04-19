@@ -5,7 +5,7 @@ import numpy as np
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-DEVICE = torch.device("cpu")
+DEVICE = torch.device("cpu") 
 
 # ----------------------------
 # Model (exact copy)
