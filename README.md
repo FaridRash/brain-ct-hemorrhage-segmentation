@@ -1,6 +1,6 @@
 # 🧠 Brain CT Hemorrhage Analysis (Segmentation + Classification)
 
-## 🚀 Project Vision
+##  Project Vision
 
 This project develops a **modular AI system** for intracranial hemorrhage (ICH) analysis from CT scans.
 
@@ -9,12 +9,12 @@ The system combines:
 - **Machine Learning (ML)** → decision making  
 - **LLM + RAG (future)** → clinical-style explanations  
 
-🎯 **Goal:**  
+ **Goal:**  
 Build a **deployable decision-support prototype** for fast and reliable hemorrhage detection.
 
 ---
 
-## 🧩 System Overview
+##  System Overview
 
 The pipeline follows a **data-centric and modular architecture**:
 
@@ -33,7 +33,7 @@ Deep Learning Models (Segmentation + Classification)
 
 ---
 
-## 🧠 Computer Vision Workflow
+##  Computer Vision Workflow
 
 ![CV Workflow](https://github.com/FaridRash/brain-ct-hemorrhage-segmentation/blob/main/Diagrams/CV%20Workflow.jpg)
 
@@ -45,7 +45,7 @@ This workflow describes the **inference-time pipeline** after model training:
 
 ---
 
-## ⚙️ Training Workflow
+##  Training Workflow
 
 ![Training Workflow](https://github.com/FaridRash/brain-ct-hemorrhage-segmentation/blob/main/Diagrams/The%20Training%20Workflow.jpg)
 
@@ -58,7 +58,7 @@ This workflow describes how the model is trained:
 
 ---
 
-## 📊 Dataset
+##  Dataset
 
 **Source:**  
 PhysioNet – *CT Images for Intracranial Hemorrhage Detection and Segmentation (v1.3.1)*  
@@ -97,7 +97,7 @@ https://physionet.org/content/ct-ich/1.3.1/
 - Binary values: `[0, 255]`
 - No explicit classification labels are generated
 
-🧠 Note:
+ Note:
 - Hemorrhage presence can be derived from segmentation:
   - `hemorrhage = any(predicted_mask > 0)`
 
@@ -112,7 +112,7 @@ https://physionet.org/content/ct-ich/1.3.1/
 3. **Windowing (multi-window strategy)**
 4. **Normalization**
 
-🧠 Windowing strategy:
+ Windowing strategy:
 - Not limited to a single window
 - Can include multiple channels:
   - Brain window
@@ -163,7 +163,7 @@ labels.csv
 
 ---
 
-## 📥 Input / Output
+##  Input / Output
 
 **Input:**
 - 2D CT slices (`.npy`)
@@ -174,7 +174,7 @@ labels.csv
 
 ---
 
-## 📈 Evaluation Metrics
+##  Evaluation Metrics
 
 ### Classification
 - Accuracy  
@@ -188,9 +188,9 @@ labels.csv
 
 ---
 
-## 📌 Current Status
+##  Current Status
 
-### ✅ Completed
+###  Completed
 - Dataset acquisition  
 - 3D → 2D conversion  
 - Label generation  
@@ -200,7 +200,7 @@ labels.csv
 
 ---
 
-### 🔜 Next Steps
+###  Next Steps
 
 - Train segmentation model (U-Net)
 - Train classification model
@@ -212,7 +212,7 @@ labels.csv
 
 ---
 
-## 🔮 Future Directions
+##  Future Directions
 
 ### Computer Vision
 - 3-channel windowing (multi-window inputs)
@@ -230,7 +230,7 @@ labels.csv
 
 ---
 
-## 🤝 System Modules
+##  System Modules
 
 - **CV Module** → segmentation + detection  
 - **ML Module** → classification  
@@ -245,7 +245,7 @@ This project is a **research prototype** and is **not intended for clinical use*
 
 ---
 
-## 📬 Contact
+##  Contact
 
 **Seyed Ali Rashidi (Farid)**  
 📧 farid.rash@gmail.com  
