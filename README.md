@@ -18,17 +18,17 @@ Build a **deployable decision-support prototype** for fast and reliable hemorrha
 
 The pipeline follows a **data-centric and modular architecture**:
 
--3D CT Scan (NIfTI)
+3D CT Scan (NIfTI)  
 ↓
--2D Slice Extraction
+2D Slice Extraction  
 ↓
--Preprocessing Pipeline
+Preprocessing Pipeline  
 ↓
--Structured Dataset (Train / Val / Test)
+Structured Dataset (Train / Val / Test)  
 ↓
--Deep Learning Models (Segmentation + Classification)
+Deep Learning Models (Segmentation + Classification)  
 ↓
--(Next) LLM + RAG + UI
+(Next) LLM + RAG + UI  
 
 
 ---
