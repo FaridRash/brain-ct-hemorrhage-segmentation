@@ -91,13 +91,15 @@ https://physionet.org/content/ct-ich/1.3.1/
 
 ---
 
-### 3. Label Generation
-Binary classification derived from segmentation:
+### 3. Ground Truth (Segmentation)
 
-label = 1 if any(mask > 0) else 0
+- Masks are used **directly as ground truth**
+- Binary values: `[0, 255]`
+- No explicit classification labels are generated
 
-Output:
-- `labels.csv`
+🧠 Note:
+- Hemorrhage presence can be derived from segmentation:
+  - `hemorrhage = any(predicted_mask > 0)`
 
 ---
 
@@ -107,12 +109,19 @@ Output:
 
 1. **Filtering (HU-based)**
 2. **Cropping (brain region)**
-3. **Windowing (WL=40, WW=80)**
+3. **Windowing (multi-window strategy)**
 4. **Normalization**
+
+🧠 Windowing strategy:
+- Not limited to a single window
+- Can include multiple channels:
+  - Brain window
+  - Blood window
+  - Bone window
 
 🔴 Important:
 - Filtering must be applied **before windowing**
-- HU information must be preserved until windowing stage
+- HU values must be preserved until this stage
 
 ---
 
