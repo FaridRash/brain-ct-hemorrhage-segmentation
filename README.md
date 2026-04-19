@@ -73,7 +73,7 @@ https://physionet.org/content/ct-ich/1.3.1/
 
 ---
 
-## ⚙️ Data Pipeline (v1)
+##  Data Pipeline (v1)
 
 ### 1. 3D → 2D Conversion
 - Extract slice-wise CT images and masks
